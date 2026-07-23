@@ -10,25 +10,28 @@ export function Brand({ light = false }: { light?: boolean }) {
 
 export function Header() {
   const [open, setOpen] = useState(false);
-  return (
+  return <>
+    <div className="contact-strip"><div className="container contact-strip-inner"><span>Modern creative digital agency</span><a href="tel:+17783786424">+1 (778) 378-6424 <small>Call us</small></a></div></div>
     <header className="site-header">
       <div className="container nav-wrap">
         <Link href="/" aria-label="Nexora home" onClick={() => setOpen(false)}><Brand /></Link>
         <nav className={`main-nav ${open ? "is-open" : ""}`} aria-label="Main navigation">
           <div className="nav-services">
-            <button type="button" className="nav-link nav-services-button">Services <span>+</span></button>
+            <button type="button" className="nav-link nav-services-button">Our services <span>+</span></button>
             <div className="services-menu">
               {services.slice(0, 6).map((service) => <Link key={service.slug} href={`/services/${service.slug}`} onClick={() => setOpen(false)}><span className="menu-code">{service.code}</span><span><strong>{service.category}</strong><small>{service.title.replace(".", "").slice(0, 42)}…</small></span></Link>)}
             </div>
           </div>
-          <Link className="nav-link" href="/insights" onClick={() => setOpen(false)}>Insights</Link>
-          <Link className="nav-link" href="/#work" onClick={() => setOpen(false)}>Selected work</Link>
-          <Link className="nav-cta" href="/start-project" onClick={() => setOpen(false)}>Start a project <span>↗</span></Link>
+          <Link className="nav-link" href="/#work" onClick={() => setOpen(false)}>Projects</Link>
+          <Link className="nav-link" href="/insights" onClick={() => setOpen(false)}>Blog</Link>
+          <Link className="nav-link" href="/#about" onClick={() => setOpen(false)}>About us</Link>
+          <Link className="nav-link" href="/#contact" onClick={() => setOpen(false)}>Contact</Link>
+          <Link className="nav-cta" href="/start-project" onClick={() => setOpen(false)}>Get started <span>↗</span></Link>
         </nav>
         <button className="menu-toggle" type="button" aria-label={open ? "Close menu" : "Open menu"} aria-expanded={open} onClick={() => setOpen(!open)}><span /><span /></button>
       </div>
     </header>
-  );
+  </>;
 }
 
 export function Footer() {

@@ -2,5 +2,5 @@
   <rect width="32" height="32" rx="10" fill="url(#g)"/>
   <rect x="9" y="9" width="14" height="14" rx="4" transform="rotate(45 9 9)" stroke="white" stroke-opacity=".7"/>
   <circle cx="16" cy="16" r="3" fill="white" fill-opacity=".85"/>
-  <defs><linearGradient id="g" x1="3" y1="2" x2="30" y2="30" gradientUnits="userSpaceOnUse"><stop stop-color="#172A52"/><stop offset=".72" stop-color="#2F6DF6"/><stop offset="1" stop-color="#43D6FF"/></linearGradient></defs>
+  <defs><linearGradient id="g" x1="3" y1="2" x2="30" y2="30" gradientUnits="userSpaceOnUse"><stop stop-color="#172A52"/><stop offset=".52" stop-color="#2746F5"/><stop offset="1" stop-color="#6F27F5"/></linearGradient></defs>
 </svg>

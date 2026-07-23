@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { ArrowButton, Eyebrow, SiteShell } from "./components/site-shell";
+import { KineticGallery } from "./components/kinetic-gallery";
 import { insights, services } from "./data";
 
 const pillars = [
@@ -41,6 +42,7 @@ function HeroArt() {
 export default function Home() {
   return <SiteShell><main>
     <section className="reference-hero"><div className="container reference-hero-grid"><div className="reference-hero-copy"><Eyebrow light>Hi! We are</Eyebrow><h1>Nexora <em>Digital</em><br />Marketing Inc.</h1><p className="hero-lead">Modern creative digital agency building powerful foundations for visibility, qualified leads, and measurable growth.</p><div className="button-row"><ArrowButton href="/start-project">Get started</ArrowButton><ArrowButton href="#about" secondary>Discover Nexora</ArrowButton></div><div className="reference-hero-note"><span>Web design</span><span>SEO</span><span>Branding</span><span>Performance</span></div></div><HeroArt /></div></section>
+    <KineticGallery />
 
     <section className="reference-about section section-light" id="about"><div className="container about-grid"><div className="about-visual"><div className="about-visual-label">NEXORA / 2026</div><div className="about-visual-word">GROW<br /><em>SMARTER</em></div><div className="about-visual-orbit" /><span>strategy → systems → growth</span></div><div className="about-copy"><Eyebrow>About Nexora Digital Marketing Inc.</Eyebrow><h2>Strategic digital growth partners.</h2><p>We help businesses build powerful digital foundations. From high-performance websites to data-driven marketing campaigns, we focus on strategies that increase visibility, attract qualified leads, and turn attention into measurable growth.</p><p>Our team blends creativity with analytics. Every solution is crafted to support long-term scalability and sustainable success.</p><div className="about-actions"><ArrowButton href="/services/digital-strategy">See our approach</ArrowButton><Link className="text-link" href="/start-project">More about Nexora <span>↗</span></Link></div></div></div></section>
 

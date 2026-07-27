@@ -35,9 +35,9 @@ export function KineticGallery() {
       <div className="kinetic-diagonal"><Track /></div>
       <div className="kinetic-orbit orbit-ring-one"><Track /></div>
       <div className="kinetic-orbit orbit-ring-two"><Track reverse /></div>
-      <button type="button" className="kinetic-core" aria-label={paused ? "Play marquee motion" : "Pause marquee motion"} aria-pressed={paused} onClick={() => setPaused(!paused)}><span className="core-mark">NX</span><small>{paused ? "play" : "pause"}</small></button>
+      <button type="button" className="kinetic-core shimmer-button" aria-label={paused ? "Play marquee motion" : "Pause marquee motion"} aria-pressed={paused} onClick={() => setPaused(!paused)}><span className="shimmer-button__content"><span className="core-mark">NX</span><small>{paused ? "play" : "pause"}</small></span></button>
       <span className="kinetic-side-label label-left">STRATEGY / 01</span><span className="kinetic-side-label label-right">GROWTH / 04</span>
     </div>
-    <div className="kinetic-controls"><div className="shape-controls" role="group" aria-label="Choose marquee shape">{shapes.map((shape) => <button key={shape.id} type="button" className={active === shape.id ? "active" : ""} aria-pressed={active === shape.id} onClick={() => setActive(shape.id)}>{shape.label}</button>)}</div><button type="button" className="motion-toggle" onClick={() => setPaused(!paused)}>{paused ? "Play motion" : "Pause motion"} <span>{paused ? "▶" : "Ⅱ"}</span></button></div>
+    <div className="kinetic-controls"><div className="shape-controls" role="group" aria-label="Choose marquee shape">{shapes.map((shape) => <button key={shape.id} type="button" className={`shimmer-button ${active === shape.id ? "active" : ""}`} aria-pressed={active === shape.id} onClick={() => setActive(shape.id)}><span className="shimmer-button__content">{shape.label}</span></button>)}</div><button type="button" className="motion-toggle shimmer-button" onClick={() => setPaused(!paused)}><span className="shimmer-button__content">{paused ? "Play motion" : "Pause motion"} <span>{paused ? "▶" : "Ⅱ"}</span></span></button></div>
   </div></section>;
 }

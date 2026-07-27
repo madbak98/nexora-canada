@@ -1,0 +1,73 @@
+.logoloop {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  --logoloop-gap: 52px;
+  --logoloop-logoHeight: 22px;
+  --logoloop-duration: 24s;
+  --logoloop-fadeColor: #071126;
+}
+
+.logoloop__track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: logoloop-scroll var(--logoloop-duration) linear infinite;
+  animation-play-state: var(--logoloop-playState, running);
+}
+
+.logoloop--right .logoloop__track { animation-name: logoloop-scroll-right; }
+
+.logoloop__list {
+  display: flex;
+  align-items: center;
+  flex: 0 0 auto;
+  gap: var(--logoloop-gap);
+  min-width: max-content;
+  padding: 0 var(--logoloop-gap) 0 0;
+  margin: 0;
+  list-style: none;
+}
+
+.logoloop__item {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  min-height: var(--logoloop-logoHeight);
+  color: #a9c4e8;
+  font-size: var(--logoloop-logoHeight);
+  line-height: 1;
+  white-space: nowrap;
+}
+
+.logoloop__node {
+  display: inline-flex;
+  align-items: center;
+  transition: color .25s ease, transform .25s ease, opacity .25s ease;
+}
+
+.logoloop__link { color: inherit; text-decoration: none; }
+.logoloop__link:hover { color: #e9f6ff; }
+.logoloop--scale-hover .logoloop__item:hover .logoloop__node { color: #f3fbff; transform: scale(1.08); }
+
+.logoloop--fade::before,
+.logoloop--fade::after {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 2;
+  width: clamp(28px, 10%, 150px);
+  content: "";
+  pointer-events: none;
+}
+
+.logoloop--fade::before { left: 0; background: linear-gradient(to right, var(--logoloop-fadeColor), transparent); }
+.logoloop--fade::after { right: 0; background: linear-gradient(to left, var(--logoloop-fadeColor), transparent); }
+
+@keyframes logoloop-scroll { from { transform: translate3d(0, 0, 0); } to { transform: translate3d(-50%, 0, 0); } }
+@keyframes logoloop-scroll-right { from { transform: translate3d(-50%, 0, 0); } to { transform: translate3d(0, 0, 0); } }
+
+@media (prefers-reduced-motion: reduce) {
+  .logoloop__track { animation-play-state: paused; }
+  .logoloop__node { transition: none; }
+}

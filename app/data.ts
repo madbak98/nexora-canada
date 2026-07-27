@@ -450,12 +450,12 @@ export const services: Service[] = [
 export const serviceBySlug = Object.fromEntries(services.map((service) => [service.slug, service])) as Record<string, Service>;
 
 export const insights = [
-  { title: "Why a Website Should Start With Structure, Not Visuals", category: "Website Planning", read: "6 min read", accent: "01" },
-  { title: "What Local SEO Actually Needs Before Content Starts", category: "SEO & Local", read: "5 min read", accent: "02" },
-  { title: "Why Google Ads Fail Without the Right Landing Page", category: "Paid Growth", read: "7 min read", accent: "03" },
-  { title: "How to Know Which Digital Move Comes First", category: "Digital Strategy", read: "5 min read", accent: "04" },
-  { title: "Why a Logo Alone Is Not a Brand System", category: "Brand Systems", read: "4 min read", accent: "05" },
-  { title: "Why App Projects Need an MVP Roadmap", category: "Product Direction", read: "6 min read", accent: "06" },
-  { title: "What Happens When a Website Is Left Unmanaged", category: "Website Care", read: "5 min read", accent: "07" },
-  { title: "When a Business Needs Consultation Before Execution", category: "Business Decisions", read: "6 min read", accent: "08" },
+  { title: "How To Do Keyword Research For SEO: A Beginner’s Guide", category: "Blog", read: "6 min read", accent: "01" },
+  { title: "Why Is SEO Content Writing Important?", category: "Web Development", read: "5 min read", accent: "02" },
+  { title: "How Does Google Know How To Rank A Page?", category: "Keyword Research", read: "7 min read", accent: "03" },
+  { title: "What’s The Key To Successful Customer Journeys?", category: "Blog", read: "5 min read", accent: "04" },
+  { title: "Is TikTok Becoming A Search Engine?", category: "Business", read: "4 min read", accent: "05" },
+  { title: "Content Marketing 101: How To Create Compelling Conversions", category: "Social Media", read: "6 min read", accent: "06" },
+  { title: "How Strategic Branding Builds Long-Term Recognition", category: "Branding", read: "5 min read", accent: "07" },
+  { title: "Why Performance Tracking Belongs In Every Growth Plan", category: "Digital Growth", read: "6 min read", accent: "08" },
 ];

@@ -1,0 +1,15 @@
+.project-card-swap { position: relative; min-height: 585px; }
+.project-card-swap__stage { position: relative; width: min(100%, 520px); height: 465px; margin: 0 auto; perspective: 1200px; }
+.project-card-swap__card { position: absolute; inset: 0 auto auto 0; width: 100%; height: 390px; overflow: hidden; border: 1px solid rgba(255,255,255,.32); border-radius: 28px; color: #fff; background: #13213A; box-shadow: 0 28px 58px rgba(19,33,58,.25); transform-origin: 50% 22%; }
+.project-card-swap__card img { display: block; width: 100%; height: 100%; object-fit: cover; filter: saturate(.85) contrast(1.05); }
+.project-card-swap__shade { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(19,33,58,.04) 20%, rgba(19,33,58,.88) 100%), linear-gradient(135deg, rgba(37,99,235,.18), rgba(111,39,245,.22)); }
+.project-card-swap__content { position: absolute; right: 27px; bottom: 25px; left: 27px; }
+.project-card-swap__content > span { color: #93C5FD; font-size: .63rem; font-weight: 850; letter-spacing: .14em; text-transform: uppercase; }
+.project-card-swap__content h3 { max-width: 390px; margin-top: 12px; color: #fff; font-size: clamp(2rem, 4vw, 3.3rem); letter-spacing: -.07em; }
+.project-card-swap__content p { max-width: 340px; margin-top: 10px; color: #DBEAFE; font-size: .84rem; line-height: 1.5; }
+.project-card-swap__content button { position: absolute; right: 0; bottom: 0; width: 48px; height: 48px; border: 1px solid rgba(255,255,255,.3); border-radius: 50%; color: #fff; background: rgba(255,255,255,.12); cursor: pointer; font-size: 1.35rem; backdrop-filter: blur(12px); transition: transform .2s ease, background .2s ease; }
+.project-card-swap__content button:hover { background: #2563EB; transform: translate(3px, -3px); }
+.project-card-swap__controls { display: flex; justify-content: center; gap: 14px; margin-top: 108px; }
+.project-card-swap__controls button { display: grid; place-items: center; width: 54px; height: 42px; border: 1px solid rgba(148,163,184,.35); border-radius: 99px; color: #64748B; background: rgba(255,255,255,.38); cursor: pointer; font-size: .76rem; font-weight: 850; transition: .2s ease; }
+.project-card-swap__controls button.is-active, .project-card-swap__controls button:hover { color: #fff; border-color: #2563EB; background: #2563EB; }
+@media (max-width: 780px) { .project-card-swap { min-height: 570px; }.project-card-swap__stage { height: 370px; }.project-card-swap__card { height: 305px; border-radius: 22px; }.project-card-swap__content { right: 19px; bottom: 19px; left: 19px; }.project-card-swap__content h3 { font-size: 2rem; }.project-card-swap__content button { width: 41px; height: 41px; }.project-card-swap__controls { margin-top: 70px; gap: 10px; }.project-card-swap__controls button { width: 48px; height: 38px; } }

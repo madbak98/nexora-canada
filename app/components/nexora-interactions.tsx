@@ -294,10 +294,10 @@ export function InsightsHeroParallax() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const translateX = useTransform(scrollYProgress, [0, 1], [0, 760]);
   const translateXReverse = useTransform(scrollYProgress, [0, 1], [0, -760]);
-  const rotateX = useTransform(scrollYProgress, [0, .24], [14, 0]);
-  const rotateZ = useTransform(scrollYProgress, [0, .24], [3, 0]);
-  const translateY = useTransform(scrollYProgress, [0, .24], [-170, 0]);
-  const opacity = useTransform(scrollYProgress, [0, .3], [.42, 1]);
+  const rotateX = useTransform(scrollYProgress, [0, .24], [5, 0]);
+  const rotateZ = useTransform(scrollYProgress, [0, .24], [.8, 0]);
+  const translateY = useTransform(scrollYProgress, [0, .24], [0, 0]);
+  const opacity = useTransform(scrollYProgress, [0, .3], [1, 1]);
   const firstRow = insightParallaxProducts.slice(0, 5);
   const secondRow = insightParallaxProducts.slice(5, 10);
   const thirdRow = insightParallaxProducts.slice(10, 15);

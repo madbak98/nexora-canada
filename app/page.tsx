@@ -74,7 +74,6 @@ export default function Home() {
 
         <section className="nx-insights nx-insights-parallax-section" id="insights">
           <InsightsHeroParallax />
-          <div className="container nx-insights-footer"><Link className="nx-text-link nx-text-link-light" href="/insights">Explore all insights <span>↗</span></Link></div>
         </section>
 
         <InsightsVelocityBand />

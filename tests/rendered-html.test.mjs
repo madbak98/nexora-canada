@@ -20,9 +20,9 @@ test("server-renders the Nexora homepage", async () => {
 
   const html = await response.text();
   assert.match(html, /Nexora Digital Marketing Inc\./i);
-  assert.match(html, /Strategic digital growth partners/i);
-  assert.match(html, /What clients say/i);
-  assert.match(html, /Get in touch with us/i);
+  assert.match(html, /Digital systems built with strategy before design/i);
+  assert.match(html, /Useful thinking for the next decision/i);
+  assert.match(html, /Start the conversation/i);
   assert.doesNotMatch(html, /Your site is taking shape|codex-preview|react-loading-skeleton/i);
 });
 

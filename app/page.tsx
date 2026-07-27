@@ -1,10 +1,10 @@
 import Link from "next/link";
 import { ArrowButton, Footer, Header, Eyebrow } from "./components/site-shell";
 import { LayoutTextFlip } from "./components/layout-text-flip";
-import { ContactFlowingMenu, HeroCircularText, HeroPlasma, InsightsBento, InsightsVelocityBand, LightSectionGrid, NexoraLogoLoop, ProjectsCardSwap, ServicesGallery, ServicesScrollStack, SpecularLink, TeamHoverMembers } from "./components/nexora-interactions";
+import { ContactFlowingMenu, HeroCircularText, HeroPlasma, InsightsHeroParallax, InsightsVelocityBand, LightSectionGrid, NexoraLogoLoop, ProjectsCardSwap, ServicesGallery, ServicesScrollStack, SpecularLink, TeamHoverMembers } from "./components/nexora-interactions";
 import { services } from "./data";
 
-const serviceLinks = services.slice(0, 6);
+const serviceLinks = services;
 
 export default function Home() {
   return (
@@ -59,10 +59,6 @@ export default function Home() {
           </div>
           <div className="container nx-gallery-frame"><ServicesGallery /></div>
           <div className="container nx-service-stack"><ServicesScrollStack items={serviceLinks.map((service, index) => ({ number: `0${index + 1}`, title: service.category, description: service.description, href: `/services/${service.slug}` }))} /></div>
-          <div className="container nx-decision-paths">
-            <Link href="/services/business-consultation"><span>Not sure what to do next?</span><strong>Business Consultation</strong><em>↗</em></Link>
-            <Link href="/services/application-development"><span>Need a custom digital product?</span><strong>Application Development</strong><em>↗</em></Link>
-          </div>
         </section>
 
         <section className="nx-projects" id="work">
@@ -76,12 +72,8 @@ export default function Home() {
           <div className="container"><TeamHoverMembers /></div>
         </section>
 
-        <section className="nx-insights" id="insights">
-          <div className="container nx-section-head nx-section-head-dark">
-            <div><Eyebrow light>Insights</Eyebrow><h2><LayoutTextFlip text="Useful thinking for" words={["the next decision.", "digital growth.", "better direction."]} /></h2></div>
-            <p>Practical guidance for businesses planning websites, SEO, ads, branding, applications, and long-term digital growth.</p>
-          </div>
-          <div className="container nx-bento-shell"><InsightsBento /></div>
+        <section className="nx-insights nx-insights-parallax-section" id="insights">
+          <InsightsHeroParallax />
           <div className="container nx-insights-footer"><Link className="nx-text-link nx-text-link-light" href="/insights">Explore all insights <span>↗</span></Link></div>
         </section>
 

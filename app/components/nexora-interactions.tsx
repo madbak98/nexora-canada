@@ -1,8 +1,8 @@
 "use client";
 
 import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
-import { motion } from "motion/react";
+import { useEffect, useRef, useState } from "react";
+import { motion, useScroll, useTransform } from "motion/react";
 import { AnimatePresence } from "motion/react";
 import CircularGallery from "./react-bits/Components/CircularGallery/CircularGallery";
 import CircularText from "./react-bits/TextAnimations/CircularText/CircularText";
@@ -206,7 +206,7 @@ export function ServicesGallery() {
 }
 
 export function ServicesScrollStack({ items }: { items: ScrollStackItem[] }) {
-  return <ScrollStack items={items} />;
+  return <ScrollStack items={items} variant="grid" />;
 }
 
 export function ProjectsCardSwap() {
@@ -240,6 +240,83 @@ export function InsightsBento() {
       spotlightRadius={320}
       particleCount={10}
     />
+  );
+}
+
+type InsightParallaxProduct = {
+  title: string;
+  category: string;
+  description: string;
+  link: string;
+  thumbnail: string;
+  featured?: boolean;
+};
+
+const insightParallaxProducts: InsightParallaxProduct[] = [
+  { category: "Web Design", title: "Start with structure, not visuals", description: "The best websites make the business and next action easy to understand.", link: "/insights", thumbnail: "/images/insights/web-structure.png" },
+  { category: "SEO", title: "Local SEO before content", description: "Search relevance begins with services, intent, trust, and page structure.", link: "/insights", thumbnail: "/images/insights/local-search.png" },
+  { category: "Google Ads", title: "The landing page matters", description: "Better paid traffic needs a better path after the click.", link: "/insights", thumbnail: "/images/insights/paid-growth.png", featured: true },
+  { category: "Digital Strategy", title: "Which move comes first?", description: "Make the priority clear before you build, spend, or scale.", link: "/insights", thumbnail: "/images/insights/brand-system.png" },
+  { category: "Brand Systems", title: "A logo is not the whole brand", description: "Consistency is a system that travels across every touchpoint.", link: "/insights", thumbnail: "/images/insights/brand-system.png" },
+  { category: "Product Direction", title: "App projects need an MVP path", description: "Map the workflow and product scope before development gets expensive.", link: "/insights", thumbnail: "/images/insights/web-structure.png", featured: true },
+  { category: "Website Care", title: "Trust compounds after launch", description: "Useful maintenance keeps every digital touchpoint ready for the next opportunity.", link: "/insights", thumbnail: "/images/insights/brand-system.png" },
+  { category: "Paid Growth", title: "Every campaign needs a clear job", description: "A focused offer gives your budget a stronger path from attention to action.", link: "/insights", thumbnail: "/images/insights/paid-growth.png" },
+  { category: "Search Visibility", title: "Relevance earns the click", description: "People find their way forward when the message matches the moment.", link: "/insights", thumbnail: "/images/insights/local-search.png" },
+  { category: "Brand Systems", title: "Build systems people can use", description: "A practical brand direction makes better decisions easier to repeat.", link: "/insights", thumbnail: "/images/insights/brand-system.png" },
+  { category: "Performance", title: "Measure the next move", description: "The right signals turn digital activity into a clearer operating rhythm.", link: "/insights", thumbnail: "/images/insights/paid-growth.png" },
+  { category: "Web Strategy", title: "Clarity is a conversion advantage", description: "A calmer path helps the right visitors understand what to do next.", link: "/insights", thumbnail: "/images/insights/web-structure.png", featured: true },
+  { category: "Content Strategy", title: "Content follows structure", description: "Strong foundations give every useful message somewhere to land.", link: "/insights", thumbnail: "/images/insights/local-search.png" },
+  { category: "Creative Direction", title: "Brand systems travel further", description: "Connected visual decisions make every customer touchpoint feel intentional.", link: "/insights", thumbnail: "/images/insights/brand-system.png" },
+  { category: "Digital Products", title: "Better products start with scope", description: "The clearest product path begins with the decision the experience must support.", link: "/insights", thumbnail: "/images/insights/web-structure.png" },
+];
+
+function InsightParallaxCard({ product, translate }: { product: InsightParallaxProduct; translate: ReturnType<typeof useTransform> }) {
+  return (
+    <motion.a className={`nx-insight-parallax-card ${product.featured ? "is-featured" : ""}`} href={product.link} style={{ x: translate }}>
+      <img src={product.thumbnail} alt="" />
+      <span className="nx-insight-parallax-card__shade" />
+      <span className="nx-insight-parallax-card__content">
+        <span className="nx-insight-parallax-card__category">{product.category}</span>
+        <strong>{product.title}</strong>
+        <small>{product.description}</small>
+      </span>
+      <span className="nx-insight-parallax-card__arrow" aria-hidden="true">↗</span>
+    </motion.a>
+  );
+}
+
+function InsightsEyebrow({ children }: { children: React.ReactNode }) {
+  return <span className="eyebrow eyebrow-light"><i />{children}</span>;
+}
+
+export function InsightsHeroParallax() {
+  const ref = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
+  const translateX = useTransform(scrollYProgress, [0, 1], [0, 760]);
+  const translateXReverse = useTransform(scrollYProgress, [0, 1], [0, -760]);
+  const rotateX = useTransform(scrollYProgress, [0, .24], [14, 0]);
+  const rotateZ = useTransform(scrollYProgress, [0, .24], [3, 0]);
+  const translateY = useTransform(scrollYProgress, [0, .24], [-170, 0]);
+  const opacity = useTransform(scrollYProgress, [0, .3], [.42, 1]);
+  const firstRow = insightParallaxProducts.slice(0, 5);
+  const secondRow = insightParallaxProducts.slice(5, 10);
+  const thirdRow = insightParallaxProducts.slice(10, 15);
+
+  return (
+      <div ref={ref} className="nx-insights-parallax">
+      <div className="container nx-insights-parallax__header">
+        <InsightsEyebrow>Insights</InsightsEyebrow>
+        <h2>Useful thinking for the next decision.</h2>
+        <p>Practical guidance for businesses planning websites, SEO, ads, branding, applications, and long-term digital growth.</p>
+      </div>
+      <div className="nx-insights-parallax__viewport">
+        <motion.div className="nx-insights-parallax__stage" style={{ rotateX, rotateZ, y: translateY, opacity }}>
+          <div className="nx-insights-parallax__row nx-insights-parallax__row--reverse">{firstRow.map((product) => <InsightParallaxCard key={product.title} product={product} translate={translateX} />)}</div>
+          <div className="nx-insights-parallax__row">{secondRow.map((product) => <InsightParallaxCard key={product.title} product={product} translate={translateXReverse} />)}</div>
+          <div className="nx-insights-parallax__row nx-insights-parallax__row--reverse">{thirdRow.map((product) => <InsightParallaxCard key={product.title} product={product} translate={translateX} />)}</div>
+        </motion.div>
+      </div>
+    </div>
   );
 }
 

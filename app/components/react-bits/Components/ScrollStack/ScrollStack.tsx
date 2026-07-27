@@ -11,7 +11,7 @@ export interface ScrollStackItem {
   href: string;
 }
 
-function ScrollStackCard({ item, index }: { item: ScrollStackItem; index: number }) {
+function ScrollStackCard({ item, index, isGrid }: { item: ScrollStackItem; index: number; isGrid: boolean }) {
   const itemRef = useRef<HTMLElement>(null);
   const { scrollYProgress } = useScroll({ target: itemRef, offset: ["start 92%", "end 18%"] });
   const scale = useSpring(useTransform(scrollYProgress, [0, 0.3, 0.72, 1], [0.94, 1, 0.975, 0.94]), { stiffness: 125, damping: 24, mass: 0.7 });
@@ -20,8 +20,10 @@ function ScrollStackCard({ item, index }: { item: ScrollStackItem; index: number
   const opacity = useTransform(scrollYProgress, [0, 0.12, 0.84, 1], [0.55, 1, 1, 0.86]);
   const blur = useTransform(scrollYProgress, [0, 0.2, 0.76, 1], ["blur(4px)", "blur(0px)", "blur(0px)", `blur(${Math.min(index * 0.35, 1.8)}px)`]);
 
+  const motionStyle = isGrid ? { "--stack-index": index } : { "--stack-index": index, scale, rotate, y, opacity, filter: blur };
+
   return (
-    <motion.article ref={itemRef} className="scroll-stack__item" style={{ "--stack-index": index, scale, rotate, y, opacity, filter: blur } as CSSProperties}>
+    <motion.article ref={itemRef} className="scroll-stack__item" style={motionStyle as CSSProperties}>
       <a className="scroll-stack__card" href={item.href}>
         <span className="scroll-stack__number">{item.number}</span>
         <span className="scroll-stack__copy">
@@ -35,10 +37,12 @@ function ScrollStackCard({ item, index }: { item: ScrollStackItem; index: number
   );
 }
 
-export default function ScrollStack({ items }: { items: ScrollStackItem[] }) {
+export default function ScrollStack({ items, variant = "stack" }: { items: ScrollStackItem[]; variant?: "stack" | "grid" }) {
+  const isGrid = variant === "grid";
+
   return (
-    <div className="scroll-stack" aria-label="Nexora services">
-      {items.map((item, index) => <ScrollStackCard item={item} index={index} key={item.href} />)}
+    <div className={`scroll-stack${isGrid ? " scroll-stack--grid" : ""}`} aria-label="Nexora services">
+      {items.map((item, index) => <ScrollStackCard item={item} index={index} isGrid={isGrid} key={item.href} />)}
     </div>
   );
 }

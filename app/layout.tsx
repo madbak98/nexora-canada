@@ -21,5 +21,7 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  return <html lang="en"><body><SiteLoader />{children}</body></html>;
+  return <html lang="en" suppressHydrationWarning><head>
+    <script dangerouslySetInnerHTML={{ __html: `(() => { try { const key = "nexora-theme"; const saved = window.localStorage.getItem(key); const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches; document.documentElement.dataset.theme = saved === "dark" || saved === "light" ? saved : prefersDark ? "dark" : "light"; } catch { document.documentElement.dataset.theme = "light"; } })();` }} />
+  </head><body><SiteLoader />{children}</body></html>;
 }
